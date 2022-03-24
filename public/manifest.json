@@ -1,0 +1,9 @@
+{
+  "short_name": "web3-law",
+  "name": "web3-law",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
