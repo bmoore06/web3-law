@@ -5,21 +5,21 @@ import { create } from "ipfs-http-client";
 const ipfs = create({
   host: "ipfs.infura.io",
   port: 5001,
-  protocol: "https",
+  protocol: "https"
 });
 
 export default class MainAppBody extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { buffer: null };
+    this.state = { buffer: null, lawHash: null, clause: null };
   }
 
-  // example hash: "QmcUwsqbsRpEzjTsqv8UC9Wp1Tfw3ziFk6iDZW6k8KciwX"
-  // example url: https://ipfs.infura.io/ipfs/QmcUwsqbsRpEzjTsqv8UC9Wp1Tfw3ziFk6iDZW6k8KciwX
+  // example hash: "QmW4YRe1LJcR3BNcguPfjzKyhbUQaELhFuU6GmASkeMWD3"
+  // example url: https://ipfs.infura.io/ipfs/QmW4YRe1LJcR3BNcguPfjzKyhbUQaELhFuU6GmASkeMWD3
   ipfsUpload = () => {
     ipfs
       .add(this.state.buffer)
-      .then(response => console.log({ response, cid: response.cid }))
+      .then(response => this.setState({ lawHash: response.path }))
       .catch(error => {
         console.log(error);
       });
@@ -41,16 +41,35 @@ export default class MainAppBody extends React.Component {
     };
   };
 
+  setClause = event => this.setState({ clause: event.target.value });
+
   render() {
     return (
-      <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "80px" }}
-      >
+      <div style={appBodyStyles}>
         <form onSubmit={this.onSubmit}>
+          <div>Clause:</div>
+          <input type="text" onChange={this.setClause} />
           <input type="file" onChange={this.processFile} />
           <input type="submit" />
         </form>
+        <div style={{ marginTop: "80px" }}>
+          <div>Clause: {!!this.state.clause && this.state.clause}</div>
+          <div style={{ marginTop: "15px" }}>
+            Hash: {!!this.state.lawHash && this.state.lawHash}
+          </div>
+          <div style={{ marginTop: "15px" }}>Document:</div>
+          {!!this.state.lawHash && (
+            <img src={`https://ipfs.infura.io/ipfs/${this.state.lawHash}`} />
+          )}
+        </div>
       </div>
     );
   }
 }
+
+const appBodyStyles = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  margin: "80px 0 0 100px"
+};
