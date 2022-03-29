@@ -1,5 +1,7 @@
 import React from "react";
 import { create } from "ipfs-http-client";
+import Web3 from "web3";
+import LawStorage from "../abis/LawStorage.json";
 
 // const ipfs = create("https://ipfs.infura.io:5001");
 const ipfs = create({
@@ -11,7 +13,54 @@ const ipfs = create({
 export default class MainAppBody extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { buffer: null, lawHash: null, clause: null };
+    this.state = {
+      buffer: null,
+      lawHash: null,
+      clause: null,
+      account: null,
+      contract: null
+    };
+  }
+
+  async componentWillMount() {
+    await this.loadWeb3();
+    await this.loadBlockchainData();
+  }
+
+  async loadWeb3() {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+    }
+    if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+    } else {
+      window.alert("Please configure metamask.");
+    }
+  }
+
+  // get the account (my test private key: 4afb0e340c78c2ba098d700baec07a359f2669cf00db909cb569ac54c051d2de)
+  // get the network
+  // get the Smart Contract
+  //  -> ABI: LawStorage.abi
+  //  -> Address: LawStorage.networks[networkId].address
+  // get the lawHash
+  async loadBlockchainData() {
+    // this will be the account logged into MetaMask
+    const web3 = window.web3;
+    const accounts = await web3.eth.getAccounts();
+    this.setState({ account: accounts[0] });
+
+    const networkId = await web3.eth.net.getId();
+    const networkData = LawStorage.networks[networkId];
+    if (networkData) {
+      const contract = web3.eth.Contract(LawStorage.abi, networkData.address);
+      this.setState({ contract });
+      const lawHash = await contract.methods.retrieve().call();
+      this.setState({ lawHash });
+    } else {
+      window.alert("smart contract not deployed to detected network");
+    }
   }
 
   // example hash: "QmW4YRe1LJcR3BNcguPfjzKyhbUQaELhFuU6GmASkeMWD3"
@@ -19,7 +68,14 @@ export default class MainAppBody extends React.Component {
   ipfsUpload = () => {
     ipfs
       .add(this.state.buffer)
-      .then(response => this.setState({ lawHash: response.path }))
+      .then(response => {
+        const lawHash = response.path;
+        console.log({contract: this.state.contract});
+        this.state.contract.methods
+          .store(lawHash)
+          .send({ from: this.state.account })
+          .then(result => this.setState({ lawHash }));
+      })
       .catch(error => {
         console.log(error);
       });
@@ -46,6 +102,9 @@ export default class MainAppBody extends React.Component {
   render() {
     return (
       <div style={appBodyStyles}>
+        <div>
+          Account Signed in: {!!this.state.account && this.state.account}
+        </div>
         <form onSubmit={this.onSubmit}>
           <div>Clause:</div>
           <input type="text" onChange={this.setClause} />
