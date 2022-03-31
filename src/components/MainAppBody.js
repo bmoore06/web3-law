@@ -14,11 +14,13 @@ export default class MainAppBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      admin: true,
       buffer: null,
       lawHash: null,
       clause: null,
       account: null,
-      contract: null
+      contract: null,
+      searchClause: null
     };
   }
 
@@ -70,9 +72,9 @@ export default class MainAppBody extends React.Component {
       .add(this.state.buffer)
       .then(response => {
         const lawHash = response.path;
-        console.log({contract: this.state.contract});
+        const clause = this.state.clause;
         this.state.contract.methods
-          .store(lawHash)
+          .store(clause, lawHash)
           .send({ from: this.state.account })
           .then(result => this.setState({ lawHash }));
       })
@@ -99,28 +101,62 @@ export default class MainAppBody extends React.Component {
 
   setClause = event => this.setState({ clause: event.target.value });
 
+  onSearch = event => {
+    event.preventDefault();
+    // const web3 = window.web3;
+    // web3.eth
+    //   .getPastLogs({ fromBlock: "0x0", address: this.state.account })
+    //   .then(res => {
+    //     res.forEach(rec => {
+    //       console.log(rec.blockNumber, rec.transactionHash, rec.topics);
+    //     });
+    //   })
+    //   .catch(err => console.log("getPastLogs failed", err));
+  };
+
+  setSearchClause = event =>
+    this.setState({ searchClause: event.target.value });
+
+  togglePage = () => this.setState({ admin: !this.state.admin });
+
   render() {
+    const { admin, account, clause, lawHash } = this.state;
     return (
       <div style={appBodyStyles}>
-        <div>
-          Account Signed in: {!!this.state.account && this.state.account}
+        <div
+          onClick={this.togglePage}
+          style={{ width: "fit-content", backgroundColor: "silver" }}
+        >
+          SWITCH PAGE
         </div>
-        <form onSubmit={this.onSubmit}>
-          <div>Clause:</div>
-          <input type="text" onChange={this.setClause} />
-          <input type="file" onChange={this.processFile} />
-          <input type="submit" />
-        </form>
-        <div style={{ marginTop: "80px" }}>
-          <div>Clause: {!!this.state.clause && this.state.clause}</div>
-          <div style={{ marginTop: "15px" }}>
-            Hash: {!!this.state.lawHash && this.state.lawHash}
-          </div>
-          <div style={{ marginTop: "15px" }}>Document:</div>
-          {!!this.state.lawHash && (
-            <img src={`https://ipfs.infura.io/ipfs/${this.state.lawHash}`} />
-          )}
-        </div>
+        <div>Account Signed in: {!!account && account}</div>
+        {admin && (
+          <>
+            <form onSubmit={this.onSubmit}>
+              <div>Clause:</div>
+              <input type="text" onChange={this.setClause} />
+              <input type="file" onChange={this.processFile} />
+              <input type="submit" />
+            </form>
+            <div style={{ marginTop: "80px" }}>
+              <div>Clause: {!!clause && clause}</div>
+              <div style={{ marginTop: "15px" }}>
+                Hash: {!!lawHash && lawHash}
+              </div>
+              <div style={{ marginTop: "15px" }}>Document:</div>
+              {!!lawHash && (
+                <img src={`https://ipfs.infura.io/ipfs/${lawHash}`} />
+              )}
+            </div>
+          </>
+        )}
+        {!admin && (
+          <form onSubmit={this.onSearch}>
+            <div>Search Law by Clause:</div>
+            <input type="text" onChange={this.setSearchClause} />
+            <input type="submit" />
+          </form>
+        )}
       </div>
     );
   }

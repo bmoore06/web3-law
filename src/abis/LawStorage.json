@@ -2,8 +2,30 @@
   "contractName": "LawStorage",
   "abi": [
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_clause",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "name": "_lawHash",
+          "type": "string"
+        }
+      ],
+      "name": "LawUpdated",
+      "type": "event",
+      "signature": "0x3263fbba41c9be218594d1189d3a2576785d6ddd7a09795bbe5625aa50ce319f"
+    },
+    {
       "constant": false,
       "inputs": [
+        {
+          "name": "_clause",
+          "type": "string"
+        },
         {
           "name": "_lawHash",
           "type": "string"
@@ -14,13 +36,17 @@
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function",
-      "signature": "0x131a0680"
+      "signature": "0xf641090c"
     },
     {
       "constant": true,
       "inputs": [],
       "name": "retrieve",
       "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        },
         {
           "name": "",
           "type": "string"
@@ -32,20 +58,20 @@
       "signature": "0x2e64cec1"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b50610336806100206000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063131a0680146100515780632e64cec114610119575b600080fd5b34801561005d57600080fd5b506101176004803603602081101561007457600080fd5b810190808035906020019064010000000081111561009157600080fd5b8201836020820111156100a357600080fd5b803590602001918460018302840111640100000000831117156100c557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506101a9565b005b34801561012557600080fd5b5061012e6101c3565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561016e578082015181840152602081019050610153565b50505050905090810190601f16801561019b5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b80600090805190602001906101bf929190610265565b5050565b606060008054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561025b5780601f106102305761010080835404028352916020019161025b565b820191906000526020600020905b81548152906001019060200180831161023e57829003601f168201915b5050505050905090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106102a657805160ff19168380011785556102d4565b828001600101855582156102d4579182015b828111156102d35782518255916020019190600101906102b8565b5b5090506102e191906102e5565b5090565b61030791905b808211156103035760008160009055506001016102eb565b5090565b9056fea165627a7a723058204869c1a36eaadba73189334f462c251b787f6793095eaf31e7e0bc4f0a1771180029",
-  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063131a0680146100515780632e64cec114610119575b600080fd5b34801561005d57600080fd5b506101176004803603602081101561007457600080fd5b810190808035906020019064010000000081111561009157600080fd5b8201836020820111156100a357600080fd5b803590602001918460018302840111640100000000831117156100c557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506101a9565b005b34801561012557600080fd5b5061012e6101c3565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561016e578082015181840152602081019050610153565b50505050905090810190601f16801561019b5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b80600090805190602001906101bf929190610265565b5050565b606060008054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561025b5780601f106102305761010080835404028352916020019161025b565b820191906000526020600020905b81548152906001019060200180831161023e57829003601f168201915b5050505050905090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106102a657805160ff19168380011785556102d4565b828001600101855582156102d4579182015b828111156102d35782518255916020019190600101906102b8565b5b5090506102e191906102e5565b5090565b61030791905b808211156103035760008160009055506001016102eb565b5090565b9056fea165627a7a723058204869c1a36eaadba73189334f462c251b787f6793095eaf31e7e0bc4f0a1771180029",
-  "sourceMap": "34:299:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:299:0;;;;;;;",
-  "deployedSourceMap": "34:299:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;132:81;;8:9:-1;5:2;;;30:1;27;20:12;5:2;132:81:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;132:81:0;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;132:81:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;132:81:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;132:81:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;132:81:0;;;;;;;;;;;;;;;;;;244:87;;8:9:-1;5:2;;;30:1;27;20:12;5:2;244:87:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;244:87:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;132:81;198:8;188:7;:18;;;;;;;;;;;;:::i;:::-;;132:81;:::o;244:87::-;285:13;317:7;310:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;244:87;:::o;34:299::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "pragma solidity >=0.4.21 <0.6.0;\n\ncontract LawStorage {\n    // address public owner;\n    string lawHash;\n\n    // store function\n    function store(string memory _lawHash) public {\n        lawHash = _lawHash;\n    }\n\n    // retrieve function\n    function retrieve() public view returns (string memory) {\n        return lawHash;\n    }\n}\n",
+  "bytecode": "0x608060405234801561001057600080fd5b506105e8806100206000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e64cec114610051578063f641090c1461014d575b600080fd5b34801561005d57600080fd5b506100666102ac565b604051808060200180602001838103835285818151815260200191508051906020019080838360005b838110156100aa57808201518184015260208101905061008f565b50505050905090810190601f1680156100d75780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101105780820151818401526020810190506100f5565b50505050905090810190601f16801561013d5780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b34801561015957600080fd5b506102aa6004803603604081101561017057600080fd5b810190808035906020019064010000000081111561018d57600080fd5b82018360208201111561019f57600080fd5b803590602001918460018302840111640100000000831117156101c157600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561022457600080fd5b82018360208201111561023657600080fd5b8035906020019184600183028401116401000000008311171561025857600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506103f3565b005b60608060006001818054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103485780601f1061031d57610100808354040283529160200191610348565b820191906000526020600020905b81548152906001019060200180831161032b57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103e45780601f106103b9576101008083540402835291602001916103e4565b820191906000526020600020905b8154815290600101906020018083116103c757829003601f168201915b50505050509050915091509091565b8160009080519060200190610409929190610517565b508060019080519060200190610420929190610517565b50806040518082805190602001908083835b6020831015156104575780518252602082019150602081019050602083039250610432565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040518091039020826040518082805190602001908083835b6020831015156104ba5780518252602082019150602081019050602083039250610495565b6001836020036101000a03801982511681845116808217855250505050505090500191505060405180910390207f3263fbba41c9be218594d1189d3a2576785d6ddd7a09795bbe5625aa50ce319f60405160405180910390a35050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061055857805160ff1916838001178555610586565b82800160010185558215610586579182015b8281111561058557825182559160200191906001019061056a565b5b5090506105939190610597565b5090565b6105b991905b808211156105b557600081600090555060010161059d565b5090565b9056fea165627a7a72305820871f2fc35e3b4257a4b447a2f58a1a0e792181f597088ceced4d4b706fcd8d7f0029",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e64cec114610051578063f641090c1461014d575b600080fd5b34801561005d57600080fd5b506100666102ac565b604051808060200180602001838103835285818151815260200191508051906020019080838360005b838110156100aa57808201518184015260208101905061008f565b50505050905090810190601f1680156100d75780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101105780820151818401526020810190506100f5565b50505050905090810190601f16801561013d5780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b34801561015957600080fd5b506102aa6004803603604081101561017057600080fd5b810190808035906020019064010000000081111561018d57600080fd5b82018360208201111561019f57600080fd5b803590602001918460018302840111640100000000831117156101c157600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561022457600080fd5b82018360208201111561023657600080fd5b8035906020019184600183028401116401000000008311171561025857600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506103f3565b005b60608060006001818054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103485780601f1061031d57610100808354040283529160200191610348565b820191906000526020600020905b81548152906001019060200180831161032b57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103e45780601f106103b9576101008083540402835291602001916103e4565b820191906000526020600020905b8154815290600101906020018083116103c757829003601f168201915b50505050509050915091509091565b8160009080519060200190610409929190610517565b508060019080519060200190610420929190610517565b50806040518082805190602001908083835b6020831015156104575780518252602082019150602081019050602083039250610432565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040518091039020826040518082805190602001908083835b6020831015156104ba5780518252602082019150602081019050602083039250610495565b6001836020036101000a03801982511681845116808217855250505050505090500191505060405180910390207f3263fbba41c9be218594d1189d3a2576785d6ddd7a09795bbe5625aa50ce319f60405160405180910390a35050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061055857805160ff1916838001178555610586565b82800160010185558215610586579182015b8281111561058557825182559160200191906001019061056a565b5b5090506105939190610597565b5090565b6105b991905b808211156105b557600081600090555060010161059d565b5090565b9056fea165627a7a72305820871f2fc35e3b4257a4b447a2f58a1a0e792181f597088ceced4d4b706fcd8d7f0029",
+  "sourceMap": "71:845:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;71:845:0;;;;;;;",
+  "deployedSourceMap": "71:845:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;802:112;;8:9:-1;5:2;;;30:1;27;20:12;5:2;802:112:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;802:112:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;802:112:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;597:174;;8:9:-1;5:2;;;30:1;27;20:12;5:2;597:174:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;597:174:0;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;597:174:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;597:174:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;597:174:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;597:174:0;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;597:174:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;597:174:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;597:174:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;597:174:0;;;;;;;;;;;;;;;;;;802:112;843:13;858;891:6;899:7;883:24;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;802:112;;:::o;597:174::-;685:7;676:6;:16;;;;;;;;;;;;:::i;:::-;;712:8;702:7;:18;;;;;;;;;;;;:::i;:::-;;755:8;735:29;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;51:19;36:153;;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;735:29:0;;;;;;;;;;;;;;;;746:7;735:29;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;51:19;36:153;;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;735:29:0;;;;;;;;;;;;;;;;;;;;;;;;;;597:174;;:::o;71:845::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: GPL-3.0\n\npragma solidity >=0.4.21 <0.6.0;\n\ncontract LawStorage {\n    // string lawHash;\n\n    // event LawUpdated(string indexed _lawHash);\n\n    // // store function\n    // function store(string memory _lawHash) public {\n    //     lawHash = _lawHash;\n    //     emit LawUpdated(_lawHash);\n    // }\n\n    // // retrieve function\n    // function retrieve() public view returns (string memory) {\n    //     return (lawHash);\n    // }\n\n    string clause;\n    string lawHash;\n\n    event LawUpdated(string indexed _clause, string indexed _lawHash);\n\n    // store function\n    function store(string memory _clause, string memory _lawHash) public {\n        clause = _clause;\n        lawHash = _lawHash;\n        emit LawUpdated(_clause, _lawHash);\n    }\n\n    // retrieve function\n    function retrieve() public view returns (string memory, string memory) {\n        return (clause, lawHash);\n    }\n}\n",
   "sourcePath": "/Users/cdewolf2015/Desktop/MSCybersecurity/ECE8491_Blockchain/project_ECE8491/web3-law/src/contracts/LawStorage.sol",
   "ast": {
     "absolutePath": "/Users/cdewolf2015/Desktop/MSCybersecurity/ECE8491_Blockchain/project_ECE8491/web3-law/src/contracts/LawStorage.sol",
     "exportedSymbols": {
       "LawStorage": [
-        22
+        45
       ]
     },
-    "id": 23,
+    "id": 46,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -60,7 +86,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:32:0"
+        "src": "37:32:0"
       },
       {
         "baseContracts": [],
@@ -68,9 +94,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 22,
+        "id": 45,
         "linearizedBaseContracts": [
-          22
+          45
         ],
         "name": "LawStorage",
         "nodeType": "ContractDefinition",
@@ -78,10 +104,10 @@
           {
             "constant": false,
             "id": 3,
-            "name": "lawHash",
+            "name": "clause",
             "nodeType": "VariableDeclaration",
-            "scope": 22,
-            "src": "89:14:0",
+            "scope": 45,
+            "src": "463:13:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -92,7 +118,7 @@
               "id": 2,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "89:6:0",
+              "src": "463:6:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -102,27 +128,122 @@
             "visibility": "internal"
           },
           {
+            "constant": false,
+            "id": 5,
+            "name": "lawHash",
+            "nodeType": "VariableDeclaration",
+            "scope": 45,
+            "src": "482:14:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 4,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "482:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 11,
+            "name": "LawUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7,
+                  "indexed": true,
+                  "name": "_clause",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11,
+                  "src": "520:22:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "520:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9,
+                  "indexed": true,
+                  "name": "_lawHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11,
+                  "src": "544:23:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 8,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "544:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "519:49:0"
+            },
+            "src": "503:66:0"
+          },
+          {
             "body": {
-              "id": 12,
+              "id": 31,
               "nodeType": "Block",
-              "src": "178:35:0",
+              "src": "666:105:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 10,
+                    "id": 20,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 8,
-                      "name": "lawHash",
+                      "id": 18,
+                      "name": "clause",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 3,
-                      "src": "188:7:0",
+                      "src": "676:6:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -132,47 +253,164 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 9,
-                      "name": "_lawHash",
+                      "id": 19,
+                      "name": "_clause",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5,
-                      "src": "198:8:0",
+                      "referencedDeclaration": 13,
+                      "src": "685:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "188:18:0",
+                    "src": "676:16:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 11,
+                  "id": 21,
                   "nodeType": "ExpressionStatement",
-                  "src": "188:18:0"
+                  "src": "676:16:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 24,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 22,
+                      "name": "lawHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5,
+                      "src": "702:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 23,
+                      "name": "_lawHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 15,
+                      "src": "712:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "702:18:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 25,
+                  "nodeType": "ExpressionStatement",
+                  "src": "702:18:0"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 27,
+                        "name": "_clause",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13,
+                        "src": "746:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 28,
+                        "name": "_lawHash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 15,
+                        "src": "755:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 26,
+                      "name": "LawUpdated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 11,
+                      "src": "735:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory,string memory)"
+                      }
+                    },
+                    "id": 29,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "735:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30,
+                  "nodeType": "EmitStatement",
+                  "src": "730:34:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 13,
+            "id": 32,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "store",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6,
+              "id": 16,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5,
-                  "name": "_lawHash",
+                  "id": 13,
+                  "name": "_clause",
                   "nodeType": "VariableDeclaration",
-                  "scope": 13,
-                  "src": "147:22:0",
+                  "scope": 32,
+                  "src": "612:21:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -180,10 +418,36 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4,
+                    "id": 12,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "147:6:0",
+                    "src": "612:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15,
+                  "name": "_lawHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32,
+                  "src": "635:22:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 14,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "635:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -193,71 +457,101 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "146:24:0"
+              "src": "611:47:0"
             },
             "returnParameters": {
-              "id": 7,
+              "id": 17,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "178:0:0"
+              "src": "666:0:0"
             },
-            "scope": 22,
-            "src": "132:81:0",
+            "scope": 45,
+            "src": "597:174:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 20,
+              "id": 43,
               "nodeType": "Block",
-              "src": "300:31:0",
+              "src": "873:41:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 18,
-                    "name": "lawHash",
-                    "nodeType": "Identifier",
-                    "overloadedDeclarations": [],
-                    "referencedDeclaration": 3,
-                    "src": "317:7:0",
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "id": 39,
+                        "name": "clause",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3,
+                        "src": "891:6:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage",
+                          "typeString": "string storage ref"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 40,
+                        "name": "lawHash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5,
+                        "src": "899:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage",
+                          "typeString": "string storage ref"
+                        }
+                      }
+                    ],
+                    "id": 41,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "890:17:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage",
-                      "typeString": "string storage ref"
+                      "typeIdentifier": "t_tuple$_t_string_storage_$_t_string_storage_$",
+                      "typeString": "tuple(string storage ref,string storage ref)"
                     }
                   },
-                  "functionReturnParameters": 17,
-                  "id": 19,
+                  "functionReturnParameters": 38,
+                  "id": 42,
                   "nodeType": "Return",
-                  "src": "310:14:0"
+                  "src": "883:24:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 21,
+            "id": 44,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "retrieve",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14,
+              "id": 33,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "261:2:0"
+              "src": "819:2:0"
             },
             "returnParameters": {
-              "id": 17,
+              "id": 38,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16,
+                  "id": 35,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 21,
-                  "src": "285:13:0",
+                  "scope": 44,
+                  "src": "843:13:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -265,10 +559,36 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 15,
+                    "id": 34,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "285:6:0",
+                    "src": "843:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 37,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 44,
+                  "src": "858:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 36,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "858:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -278,29 +598,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "284:15:0"
+              "src": "842:30:0"
             },
-            "scope": 22,
-            "src": "244:87:0",
+            "scope": 45,
+            "src": "802:112:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 23,
-        "src": "34:299:0"
+        "scope": 46,
+        "src": "71:845:0"
       }
     ],
-    "src": "0:334:0"
+    "src": "37:880:0"
   },
   "legacyAST": {
     "absolutePath": "/Users/cdewolf2015/Desktop/MSCybersecurity/ECE8491_Blockchain/project_ECE8491/web3-law/src/contracts/LawStorage.sol",
     "exportedSymbols": {
       "LawStorage": [
-        22
+        45
       ]
     },
-    "id": 23,
+    "id": 46,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -315,7 +635,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:32:0"
+        "src": "37:32:0"
       },
       {
         "baseContracts": [],
@@ -323,9 +643,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 22,
+        "id": 45,
         "linearizedBaseContracts": [
-          22
+          45
         ],
         "name": "LawStorage",
         "nodeType": "ContractDefinition",
@@ -333,10 +653,10 @@
           {
             "constant": false,
             "id": 3,
-            "name": "lawHash",
+            "name": "clause",
             "nodeType": "VariableDeclaration",
-            "scope": 22,
-            "src": "89:14:0",
+            "scope": 45,
+            "src": "463:13:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -347,7 +667,7 @@
               "id": 2,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "89:6:0",
+              "src": "463:6:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -357,27 +677,122 @@
             "visibility": "internal"
           },
           {
+            "constant": false,
+            "id": 5,
+            "name": "lawHash",
+            "nodeType": "VariableDeclaration",
+            "scope": 45,
+            "src": "482:14:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 4,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "482:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 11,
+            "name": "LawUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 10,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7,
+                  "indexed": true,
+                  "name": "_clause",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11,
+                  "src": "520:22:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "520:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9,
+                  "indexed": true,
+                  "name": "_lawHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11,
+                  "src": "544:23:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 8,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "544:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "519:49:0"
+            },
+            "src": "503:66:0"
+          },
+          {
             "body": {
-              "id": 12,
+              "id": 31,
               "nodeType": "Block",
-              "src": "178:35:0",
+              "src": "666:105:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 10,
+                    "id": 20,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 8,
-                      "name": "lawHash",
+                      "id": 18,
+                      "name": "clause",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 3,
-                      "src": "188:7:0",
+                      "src": "676:6:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -387,47 +802,164 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 9,
-                      "name": "_lawHash",
+                      "id": 19,
+                      "name": "_clause",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5,
-                      "src": "198:8:0",
+                      "referencedDeclaration": 13,
+                      "src": "685:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
                       }
                     },
-                    "src": "188:18:0",
+                    "src": "676:16:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage",
                       "typeString": "string storage ref"
                     }
                   },
-                  "id": 11,
+                  "id": 21,
                   "nodeType": "ExpressionStatement",
-                  "src": "188:18:0"
+                  "src": "676:16:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 24,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 22,
+                      "name": "lawHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5,
+                      "src": "702:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 23,
+                      "name": "_lawHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 15,
+                      "src": "712:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "702:18:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 25,
+                  "nodeType": "ExpressionStatement",
+                  "src": "702:18:0"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 27,
+                        "name": "_clause",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13,
+                        "src": "746:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 28,
+                        "name": "_lawHash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 15,
+                        "src": "755:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 26,
+                      "name": "LawUpdated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 11,
+                      "src": "735:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory,string memory)"
+                      }
+                    },
+                    "id": 29,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "735:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30,
+                  "nodeType": "EmitStatement",
+                  "src": "730:34:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 13,
+            "id": 32,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "store",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6,
+              "id": 16,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5,
-                  "name": "_lawHash",
+                  "id": 13,
+                  "name": "_clause",
                   "nodeType": "VariableDeclaration",
-                  "scope": 13,
-                  "src": "147:22:0",
+                  "scope": 32,
+                  "src": "612:21:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -435,10 +967,36 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 4,
+                    "id": 12,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "147:6:0",
+                    "src": "612:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15,
+                  "name": "_lawHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32,
+                  "src": "635:22:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 14,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "635:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -448,71 +1006,101 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "146:24:0"
+              "src": "611:47:0"
             },
             "returnParameters": {
-              "id": 7,
+              "id": 17,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "178:0:0"
+              "src": "666:0:0"
             },
-            "scope": 22,
-            "src": "132:81:0",
+            "scope": 45,
+            "src": "597:174:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 20,
+              "id": 43,
               "nodeType": "Block",
-              "src": "300:31:0",
+              "src": "873:41:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 18,
-                    "name": "lawHash",
-                    "nodeType": "Identifier",
-                    "overloadedDeclarations": [],
-                    "referencedDeclaration": 3,
-                    "src": "317:7:0",
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "id": 39,
+                        "name": "clause",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3,
+                        "src": "891:6:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage",
+                          "typeString": "string storage ref"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 40,
+                        "name": "lawHash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5,
+                        "src": "899:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage",
+                          "typeString": "string storage ref"
+                        }
+                      }
+                    ],
+                    "id": 41,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "890:17:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage",
-                      "typeString": "string storage ref"
+                      "typeIdentifier": "t_tuple$_t_string_storage_$_t_string_storage_$",
+                      "typeString": "tuple(string storage ref,string storage ref)"
                     }
                   },
-                  "functionReturnParameters": 17,
-                  "id": 19,
+                  "functionReturnParameters": 38,
+                  "id": 42,
                   "nodeType": "Return",
-                  "src": "310:14:0"
+                  "src": "883:24:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 21,
+            "id": 44,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "retrieve",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 14,
+              "id": 33,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "261:2:0"
+              "src": "819:2:0"
             },
             "returnParameters": {
-              "id": 17,
+              "id": 38,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 16,
+                  "id": 35,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 21,
-                  "src": "285:13:0",
+                  "scope": 44,
+                  "src": "843:13:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -520,10 +1108,36 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 15,
+                    "id": 34,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "285:6:0",
+                    "src": "843:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 37,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 44,
+                  "src": "858:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 36,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "858:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -533,20 +1147,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "284:15:0"
+              "src": "842:30:0"
             },
-            "scope": 22,
-            "src": "244:87:0",
+            "scope": 45,
+            "src": "802:112:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 23,
-        "src": "34:299:0"
+        "scope": 46,
+        "src": "71:845:0"
       }
     ],
-    "src": "0:334:0"
+    "src": "37:880:0"
   },
   "compiler": {
     "name": "solc",
@@ -556,12 +1170,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x1b30BD8595271934ad920338AFDB12538E274EB9",
-      "transactionHash": "0xcb43efedc12c8835909f1a07eccb77d3b864248c204d57600bd9611c98898e96"
+      "address": "0xEC45182a963f36c8475DFc76CaD6cF2AF207a3A9",
+      "transactionHash": "0x5380ab4b0591eb9549b753e7eb42c488e02c51da85c4f4cdc3abfcb2e068ce26"
     }
   },
   "schemaVersion": "3.0.2",
-  "updatedAt": "2022-03-29T01:39:43.880Z",
+  "updatedAt": "2022-03-31T03:42:27.197Z",
   "devdoc": {
     "methods": {}
   },
