@@ -21,7 +21,8 @@ export default class MainAppBody extends React.Component {
       clause: null,
       account: null,
       contract: null,
-      searchClause: null
+      searchClause: null,
+      searchResult: null
     };
   }
 
@@ -109,74 +110,87 @@ export default class MainAppBody extends React.Component {
     event.preventDefault();
     const { searchClause, contract } = this.state;
     const searchHash = window.web3.utils.sha3(searchClause);
-    contract
-      .getPastEvents("LawUpdated", {
-        // filter: { clause: searchClause },
-        fromBlock: 0,
-        toBlock: "latest"
-      })
-      .then(async events => {
-        console.log({ events }); // same results as the optional callback above
-        const relevantEvents = events.filter(
-          event => event.raw.topics[1] === searchHash
-        );
-        console.log({ relevantEvents });
-        // const test1 = window.web3.utils.hexToUtf8(
-        //   events[0].returnValues.clause
-        // );
-        // const test2 = window.web3.utils.hexToUtf8(
-        //   events[0].returnValues.lawHash
-        // );
-        // console.log({ test1, test2 });
-        const transaction = await window.web3.eth.getTransaction(
-          events[0].transactionHash
-        );
+    const pastEvents = await contract.getPastEvents("LawUpdated", {
+      // filter: { clause: searchClause }, // TODO
+      fromBlock: 0,
+      toBlock: "latest"
+    });
+    const relevantEvents = pastEvents.filter(
+      event => event.raw.topics[1] === searchHash
+    );
 
-        // const test1 = window.web3.eth.abi.decodeParameters(
-        //   ["string", "string"],
-        //   transaction.input.toString()
-        // );
+    if (!relevantEvents[0]) return;
 
-        abiDecoder.addABI(LawStorage.abi);
-        const test1 = abiDecoder.decodeMethod(transaction.input);
-        console.log(test1);
+    const transaction = await window.web3.eth.getTransaction(
+      relevantEvents[0].transactionHash
+    );
+    abiDecoder.addABI(LawStorage.abi);
+    const decodedTx = abiDecoder.decodeMethod(transaction.input);
+    console.log(decodedTx);
+    this.setState({ searchResult: decodedTx.params[1].value });
 
-        // window.web3.eth.getTransactionReceipt(
-        //   events[0].transactionHash,
-        //   function(e, receipt) {
-        //     console.log({ receipt });
-        //     console.log(receipt.logs);
-        //     const decodedLogs = abiDecoder.decodeLogs(receipt.logs);
-        //     console.log({ decodedLogs });
-        //     const temp1 = window.web3.utils
-        //       .toBN(decodedLogs[0].events[0].value)
-        //       .toString();
-        //     // const decodedParams = window.web3.eth.abi.decodeParameters(
-        //     //   [
-        //     //     { name: "clause", type: "string" },
-        //     //     { name: "lawHash", type: "string" }
-        //     //   ],
-        //     //   temp1
-        //     // );
-        //     // console.log({ decodedParams });
-        //     // console.log(window.web3.utils.toAscii(decodedLogs[0].events[0].value));
-        //   }
-        // );
-        // const transaction = await window.web3.eth.getTransaction(relevantEvents[0].transactionHash);
-        // console.log({transaction});
-        // window.web3.eth.getTransaction(events[0].transactionHash).then(console.log);
-        // const test = window.web3.utils.hexToAscii(events[0].raw.topics[1]);
-        // console.log({ test });
-      });
+    // .then(async events => {
+    //   console.log({ events });
+    //   const relevantEvents = events.filter(
+    //     event => event.raw.topics[1] === searchHash
+    //   );
+    //   console.log({ relevantEvents });
+    //   // const test1 = window.web3.utils.hexToUtf8(
+    //   //   events[0].returnValues.clause
+    //   // );
+    //   // const test2 = window.web3.utils.hexToUtf8(
+    //   //   events[0].returnValues.lawHash
+    //   // );
+    //   // console.log({ test1, test2 });
+    //   const transaction = await window.web3.eth.getTransaction(
+    //     events[0].transactionHash
+    //   );
+
+    //   // const test1 = window.web3.eth.abi.decodeParameters(
+    //   //   ["string", "string"],
+    //   //   transaction.input.toString()
+    //   // );
+
+    //   abiDecoder.addABI(LawStorage.abi);
+    //   const test1 = abiDecoder.decodeMethod(transaction.input);
+    //   console.log(test1);
+
+    //   // window.web3.eth.getTransactionReceipt(
+    //   //   events[0].transactionHash,
+    //   //   function(e, receipt) {
+    //   //     console.log({ receipt });
+    //   //     console.log(receipt.logs);
+    //   //     const decodedLogs = abiDecoder.decodeLogs(receipt.logs);
+    //   //     console.log({ decodedLogs });
+    //   //     const temp1 = window.web3.utils
+    //   //       .toBN(decodedLogs[0].events[0].value)
+    //   //       .toString();
+    //   //     // const decodedParams = window.web3.eth.abi.decodeParameters(
+    //   //     //   [
+    //   //     //     { name: "clause", type: "string" },
+    //   //     //     { name: "lawHash", type: "string" }
+    //   //     //   ],
+    //   //     //   temp1
+    //   //     // );
+    //   //     // console.log({ decodedParams });
+    //   //     // console.log(window.web3.utils.toAscii(decodedLogs[0].events[0].value));
+    //   //   }
+    //   // );
+    //   // const transaction = await window.web3.eth.getTransaction(relevantEvents[0].transactionHash);
+    //   // console.log({transaction});
+    //   // window.web3.eth.getTransaction(events[0].transactionHash).then(console.log);
+    //   // const test = window.web3.utils.hexToAscii(events[0].raw.topics[1]);
+    //   // console.log({ test });
+    // });
   };
 
   setSearchClause = event =>
     this.setState({ searchClause: event.target.value });
 
-  togglePage = () => this.setState({ admin: !this.state.admin });
+  togglePage = () => this.setState({ admin: !this.state.admin, searchResult: null });
 
   render() {
-    const { admin, account, clause, lawHash } = this.state;
+    const { admin, account, clause, lawHash, searchResult } = this.state;
     console.log({ state: this.state });
     return (
       <div style={appBodyStyles}>
@@ -208,11 +222,17 @@ export default class MainAppBody extends React.Component {
           </>
         )}
         {!admin && (
-          <form onSubmit={this.onSearch}>
-            <div>Search Law by Clause:</div>
-            <input type="text" onChange={this.setSearchClause} />
-            <input type="submit" />
-          </form>
+          <>
+            <form onSubmit={this.onSearch}>
+              <div>Search Law by Clause:</div>
+              <input type="text" onChange={this.setSearchClause} />
+              <input type="submit" />
+            </form>
+            <div style={{ marginTop: "25px" }}>Search Result:</div>
+            {!!searchResult && (
+              <img src={`https://ipfs.infura.io/ipfs/${searchResult}`} />
+            )}
+          </>
         )}
       </div>
     );
@@ -225,25 +245,3 @@ const appBodyStyles = {
   justifyContent: "center",
   margin: "80px 0 0 100px"
 };
-
-const StoreEventABI = [
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        name: "clause",
-        type: "string"
-      },
-      {
-        indexed: true,
-        name: "lawHash",
-        type: "string"
-      }
-    ],
-    name: "LawUpdated",
-    type: "event",
-    signature:
-      "0x05d013146d798b473838e6b57b78ce97861f6d72ffbbf03bd17e8ecad2217a5f"
-  }
-];
