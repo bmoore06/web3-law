@@ -1,6 +1,7 @@
 import React from "react";
 import { create } from "ipfs-http-client";
 import Web3 from "web3";
+import abiDecoder from "abi-decoder";
 import LawStorage from "../abis/LawStorage.json";
 
 // const ipfs = create("https://ipfs.infura.io:5001");
@@ -56,10 +57,13 @@ export default class MainAppBody extends React.Component {
     const networkId = await web3.eth.net.getId();
     const networkData = LawStorage.networks[networkId];
     if (networkData) {
-      const contract = web3.eth.Contract(LawStorage.abi, networkData.address);
+      const contract = new web3.eth.Contract(
+        LawStorage.abi,
+        networkData.address
+      );
       this.setState({ contract });
-      const lawHash = await contract.methods.retrieve().call();
-      this.setState({ lawHash });
+      const contractVals = await contract.methods.retrieve().call();
+      this.setState({ clause: contractVals[0], lawHash: contractVals[1] });
     } else {
       window.alert("smart contract not deployed to detected network");
     }
@@ -101,17 +105,69 @@ export default class MainAppBody extends React.Component {
 
   setClause = event => this.setState({ clause: event.target.value });
 
-  onSearch = event => {
+  onSearch = async event => {
     event.preventDefault();
-    // const web3 = window.web3;
-    // web3.eth
-    //   .getPastLogs({ fromBlock: "0x0", address: this.state.account })
-    //   .then(res => {
-    //     res.forEach(rec => {
-    //       console.log(rec.blockNumber, rec.transactionHash, rec.topics);
-    //     });
-    //   })
-    //   .catch(err => console.log("getPastLogs failed", err));
+    const { searchClause, contract } = this.state;
+    const searchHash = window.web3.utils.sha3(searchClause);
+    contract
+      .getPastEvents("LawUpdated", {
+        // filter: { clause: searchClause },
+        fromBlock: 0,
+        toBlock: "latest"
+      })
+      .then(async events => {
+        console.log({ events }); // same results as the optional callback above
+        const relevantEvents = events.filter(
+          event => event.raw.topics[1] === searchHash
+        );
+        console.log({ relevantEvents });
+        // const test1 = window.web3.utils.hexToUtf8(
+        //   events[0].returnValues.clause
+        // );
+        // const test2 = window.web3.utils.hexToUtf8(
+        //   events[0].returnValues.lawHash
+        // );
+        // console.log({ test1, test2 });
+        const transaction = await window.web3.eth.getTransaction(
+          events[0].transactionHash
+        );
+
+        // const test1 = window.web3.eth.abi.decodeParameters(
+        //   ["string", "string"],
+        //   transaction.input.toString()
+        // );
+
+        abiDecoder.addABI(LawStorage.abi);
+        const test1 = abiDecoder.decodeMethod(transaction.input);
+        console.log(test1);
+
+        // window.web3.eth.getTransactionReceipt(
+        //   events[0].transactionHash,
+        //   function(e, receipt) {
+        //     console.log({ receipt });
+        //     console.log(receipt.logs);
+        //     const decodedLogs = abiDecoder.decodeLogs(receipt.logs);
+        //     console.log({ decodedLogs });
+        //     const temp1 = window.web3.utils
+        //       .toBN(decodedLogs[0].events[0].value)
+        //       .toString();
+        //     // const decodedParams = window.web3.eth.abi.decodeParameters(
+        //     //   [
+        //     //     { name: "clause", type: "string" },
+        //     //     { name: "lawHash", type: "string" }
+        //     //   ],
+        //     //   temp1
+        //     // );
+        //     // console.log({ decodedParams });
+        //     // console.log(window.web3.utils.toAscii(decodedLogs[0].events[0].value));
+        //   }
+        // );
+        // const transaction = await window.web3.eth.getTransaction(relevantEvents[0].transactionHash);
+        // console.log({transaction});
+        // window.web3.eth.getTransaction(events[0].transactionHash).then(console.log);
+        // const test = window.web3.utils.hexToAscii(events[0].raw.topics[1]);
+        // console.log({ test });
+      });
   };
 
   setSearchClause = event =>
@@ -121,6 +177,7 @@ export default class MainAppBody extends React.Component {
 
   render() {
     const { admin, account, clause, lawHash } = this.state;
+    console.log({ state: this.state });
     return (
       <div style={appBodyStyles}>
         <div
@@ -168,3 +225,25 @@ const appBodyStyles = {
   justifyContent: "center",
   margin: "80px 0 0 100px"
 };
+
+const StoreEventABI = [
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        name: "clause",
+        type: "string"
+      },
+      {
+        indexed: true,
+        name: "lawHash",
+        type: "string"
+      }
+    ],
+    name: "LawUpdated",
+    type: "event",
+    signature:
+      "0x05d013146d798b473838e6b57b78ce97861f6d72ffbbf03bd17e8ecad2217a5f"
+  }
+];
