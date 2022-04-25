@@ -15,7 +15,6 @@ export default class LawContractInterface {
 
   getWeb3() {
     if (!this.useDefaultProvider) return this.web3Instance;
-    console.log(`${process.env.REACT_APP_INFURA_API_URL}`);
     const provider = new Web3.providers.HttpProvider(
       `${process.env.REACT_APP_INFURA_API_URL}`
     );
