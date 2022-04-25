@@ -1,14 +1,14 @@
 import React from 'react';
-import './App.css';
-import MainAppHeader from './MainAppHeader'
-import MainAppBody from './MainAppBody'
+import MainAppHeader from './MainAppHeader';
+import MainApp from './MainApp';
+
 
 class App extends React.Component {
   render() {
     return (
       <>
         <MainAppHeader />
-        <MainAppBody />
+        <MainApp />
       </>
     );
   }

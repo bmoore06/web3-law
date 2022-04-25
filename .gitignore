@@ -1,6 +1,10 @@
 # editor configs
 .vscode/
 
+# environment configs
+.env
+.env.local
+
 # Logs
 logs
 *.log
